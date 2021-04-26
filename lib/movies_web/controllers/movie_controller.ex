@@ -67,7 +67,7 @@ defmodule MoviesWeb.MovieController do
 
 
       users = Repo.paginate(Movies, page: page_num)
-    json conn, Poison.encode!(users)
+      json conn , Poison.encode!(users)
   end
 
 end

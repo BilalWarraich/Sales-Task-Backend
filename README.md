@@ -18,6 +18,18 @@ To start your Phoenix server:
   priv/repo/Data
 
 
+  Use NGROK to connect with frontend
+
+install ngrok
+ 
+ ngrok http 4000
+
+ you will get a link use that from front end.
+
+
+ ALSO there is a postman collection in the repo to test just the backend
+
+
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
 Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).

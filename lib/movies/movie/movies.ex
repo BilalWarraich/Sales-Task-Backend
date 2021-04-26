@@ -2,6 +2,7 @@ defmodule Movies.Movie.Movies do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @derive {Jason.Encoder, only: [:actor, :avg_vote, :budget, :country, :date_published, :description, :director, :duration, :genre, :imdb_title_id, :language, :metascore, :original_title, :production_company, :reviews_from_critics, :reviews_from_users, :title, :usa_gross_income, :votes, :worldwide_gross_income, :writer, :year]}
   schema "movies" do
     field :actor, :string
     field :avg_vote, :string
