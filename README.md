@@ -13,21 +13,20 @@ To start your Phoenix server:
   mix test test/movies_web/controllers/movie_controller_test.exs
 
 
-  UNZIP AND PLACE THE CSV FILES IN:
+  UNZIP AND PLACE THE CSV FILES IN THE FOLLOWING DIRECTORY FOR SEEDING:
 
-  priv/repo/Data
+         ---> priv/repo/Data
 
 
   Use NGROK to connect with frontend
 
-install ngrok
+          1)install ngrok
  
- ngrok http 4000
+          2)ngrok http 4000
+           you will get a link, use that from front end.
 
- you will get a link use that from front end.
 
-
- ALSO there is a postman collection in the repo to test just the backend
+ ----->ALSO there is a postman collection in the repo to test just the backend
 
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
