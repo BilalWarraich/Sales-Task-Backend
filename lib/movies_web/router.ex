@@ -22,6 +22,7 @@ defmodule MoviesWeb.Router do
     get "/movieByRating", MovieController, :getMoviesByRating
     get "/movieSearch", MovieController, :movieSearch
     get "/getMovies", MovieController, :getMovies
+    get "/getMovieByID", MovieController, :getMovieByID
 
   end
 
@@ -53,6 +54,7 @@ defmodule MoviesWeb.Router do
       get "/movieByRating", MovieController, :getMoviesByRating
       get "/movieSearch", MovieController, :movieSearch
       get "/getMovies", MovieController, :getMovies
+      get "/getMovieByID", MovieController, :getMovieByID
 
 
     end

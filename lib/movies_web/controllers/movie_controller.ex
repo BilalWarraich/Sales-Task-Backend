@@ -17,7 +17,7 @@ defmodule MoviesWeb.MovieController do
 
    query =    from m in Movies,
       order_by: m.title,
-      select: %{title: m.title, year: m.year, genre: m.genre, duration: m.duration, director: m.director, avg_vote: m.avg_vote, votes: m.votes}
+      select: %{imdb_title_id: m.imdb_title_id,title: m.title, year: m.year, genre: m.genre, duration: m.duration, director: m.director, avg_vote: m.avg_vote, votes: m.votes}
 
       users = Repo.paginate(query, page: page_num)
     json conn, Poison.encode!(users)
@@ -29,7 +29,7 @@ defmodule MoviesWeb.MovieController do
 
    query =    from m in Movies,
       order_by: m.year,
-      select: %{title: m.title, year: m.year, genre: m.genre, duration: m.duration, director: m.director, avg_vote: m.avg_vote, votes: m.votes}
+      select: %{imdb_title_id: m.imdb_title_id, title: m.title, year: m.year, genre: m.genre, duration: m.duration, director: m.director, avg_vote: m.avg_vote, votes: m.votes}
 
       users = Repo.paginate(query, page: page_num)
     json conn, Poison.encode!(users)
@@ -41,7 +41,7 @@ defmodule MoviesWeb.MovieController do
 
    query =    from m in Movies,
       order_by: [{:desc,m.avg_vote}],
-      select: %{title: m.title, year: m.year, genre: m.genre, duration: m.duration, director: m.director, avg_vote: m.avg_vote, votes: m.votes}
+      select: %{imdb_title_id: m.imdb_title_id, title: m.title, year: m.year, genre: m.genre, duration: m.duration, director: m.director, avg_vote: m.avg_vote, votes: m.votes}
 
       users = Repo.paginate(query, page: page_num)
     json conn, Poison.encode!(users)
@@ -54,11 +54,25 @@ defmodule MoviesWeb.MovieController do
     # || m.director,^"%#{value }%" || m.actors,^"%#{value }%"
    query =    from m in Movies,
       where: ilike(m.title,^"%#{value }%") or ilike( m.director,^"%#{value }%") or ilike(m.actor,^"%#{value }%"),
-      select: %{title: m.title, year: m.year, genre: m.genre, duration: m.duration, director: m.director, avg_vote: m.avg_vote, votes: m.votes}
+      select: %{imdb_title_id: m.imdb_title_id, title: m.title, year: m.year, genre: m.genre, duration: m.duration, director: m.director, avg_vote: m.avg_vote, votes: m.votes}
 
       users = Repo.paginate(query, page: page_num)
     json conn, Poison.encode!(users)
   end
+
+
+  def getMovieByID(conn, params) do
+
+    id = get_in(params, ["id"])
+    # || m.director,^"%#{value }%" || m.actors,^"%#{value }%"
+   query =    from m in Movies,
+      where: (m.imdb_title_id == ^id),
+      select: m
+    users = Repo.paginate(query)
+    json conn, Poison.encode!(users)
+  end
+
+
 
 
   def getMovies(conn, params) do
